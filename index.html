@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poetry Assistant App</title>
+</head>
+<body>
+    <style> 
+        h1{
+            color: black
+        }
+        
+        .nav {
+            padding: 10px;
+            margin-left: 0px;
+            background-color: aqua
+        }
+    </style>
+    <div class="nav">
+        <h1 style="text-align: center">Find Rhyming Words</h1>
+    </div>
+        
+    <div>
+        
+    <h2>Poetry Assistant</h2>
+    
+    <label for="userInput">Enter a word:</label>
+    <input type="text" id="userInput" />
+    <button onclick="fetchAndFindRhymingWords()">Find Rhyming Words</button>
+
+    <h3>Rhyming Words:</h3>
+    <div id="result"></div>
+
+    <script src="PoetryAssistant.js"></script>
+    </div>
+    
+</body>
+</html>
