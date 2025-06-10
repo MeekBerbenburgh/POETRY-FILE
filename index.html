@@ -4,43 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poetry Assistant App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
             color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .container {
-            max-width: 800px;
             width: 100%;
+            max-width: 500px;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            margin: 40px 0;
-            animation: fadeIn 0.8s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .nav {
+        .header {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             padding: 30px 20px;
             text-align: center;
@@ -48,7 +41,7 @@
             overflow: hidden;
         }
 
-        .nav::before {
+        .header::before {
             content: "";
             position: absolute;
             top: -50%;
@@ -61,52 +54,48 @@
 
         h1 {
             color: white;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             position: relative;
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        .nav p {
+        .header p {
             color: rgba(255, 255, 255, 0.85);
-            font-size: 1.1rem;
-            max-width: 600px;
+            font-size: 16px;
+            max-width: 400px;
             margin: 0 auto;
             position: relative;
         }
 
         .content {
-            padding: 40px;
+            padding: 30px;
         }
 
         h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 22px;
             color: #2c3e50;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            font-weight: 600;
             position: relative;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        h2::after {
+        h2::before {
             content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 70px;
-            height: 4px;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            border-radius: 2px;
+            display: block;
+            width: 6px;
+            height: 24px;
+            background: #6a11cb;
+            border-radius: 3px;
         }
 
         .input-group {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
         label {
@@ -114,18 +103,26 @@
             font-weight: 500;
             margin-bottom: 12px;
             color: #2c3e50;
-            font-size: 1.1rem;
+            font-size: 16px;
+            padding-left: 5px;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 20px;
         }
 
         #userInput {
-            flex: 1;
+            width: 100%;
             padding: 16px 20px;
-            border: 2px solid #e1e8ed;
-            border-radius: 12px;
-            font-size: 1.1rem;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
             transition: all 0.3s ease;
-            min-width: 200px;
+            background: #f8fafd;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e1e8ed;
+            height: 56px;
         }
 
         #userInput:focus {
@@ -138,16 +135,19 @@
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
             border: none;
-            padding: 16px 30px;
-            border-radius: 12px;
-            font-size: 1.1rem;
+            width: 100%;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 17px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 6px 15px rgba(37, 117, 252, 0.3);
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            height: 56px;
         }
 
         button:hover {
@@ -160,15 +160,18 @@
         }
 
         h3 {
-            font-size: 1.5rem;
+            font-size: 20px;
             color: #2c3e50;
             margin-bottom: 20px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         #result {
             background: #f8fafd;
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 25px;
             min-height: 150px;
             border: 1px solid #eef2f7;
@@ -180,13 +183,14 @@
         .word-card {
             background: white;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 14px;
             text-align: center;
             font-weight: 500;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
             transition: all 0.3s ease;
             border: 1px solid #f0f4f8;
             animation: popIn 0.4s ease-out;
+            font-size: 17px;
         }
 
         .word-card:hover {
@@ -205,116 +209,88 @@
             text-align: center;
             padding: 40px 0;
             color: #a0aec0;
-        }
-
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            opacity: 0.7;
+            font-size: 16px;
         }
 
         .footer {
             text-align: center;
             color: #718096;
-            padding: 20px;
-            font-size: 0.9rem;
-            max-width: 800px;
+            padding: 25px;
+            font-size: 14px;
         }
 
-        .footer a {
-            color: #6a11cb;
-            text-decoration: none;
+        .icon {
+            font-size: 22px;
+            vertical-align: middle;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 600px) {
+        @media (max-width: 500px) {
             .container {
-                margin: 20px 0;
+                border-radius: 20px;
             }
             
             .content {
                 padding: 25px;
             }
             
-            .input-group {
-                flex-direction: column;
-            }
-            
-            button {
-                width: 100%;
-                justify-content: center;
-            }
-            
             h1 {
-                font-size: 2.2rem;
+                font-size: 24px;
             }
             
             h2 {
-                font-size: 1.8rem;
+                font-size: 20px;
+            }
+            
+            #result {
+                padding: 20px;
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="nav">
+        <div class="header">
             <h1>Find Rhyming Words</h1>
-            <p>Discover perfect rhymes to enhance your poetry and songwriting</p>
+            <p>Discover perfect rhymes to enhance your poetry</p>
         </div>
-
-            <div>
         
-    <h2>Poetry Assistant</h2>
-    
-    <label for="userInput">Enter a word:</label>
-    <input type="text" id="userInput" />
-    <button onclick="fetchAndFindRhymingWords()">Find Rhyming Words</button>
-
-    <h3>Rhyming Words:</h3>
-    <div id="result"></div>
-
-    <script src="PoetryAssistant.js"></script>
-    </div>
-    
         <div class="content">
             <h2>Poetry Assistant</h2>
             
-            <label for="userInput">Enter a word to find rhymes:</label>
             <div class="input-group">
-                <input type="text" id="userInput" placeholder="e.g. love, dream, sky..." />
+                <label for="userInput">Enter a word:</label>
+                <div class="input-container">
+                    <input type="text" id="userInput" placeholder="Type a word..." />
+                </div>
                 <button onclick="fetchAndFindRhymingWords()">
-                    <i class="fas fa-search"></i> Find Rhyming Words
+                    <span class="material-symbols-outlined">search</span>
+                    Find Rhyming Words
                 </button>
             </div>
 
-            <h3>Rhyming Words:</h3>
+            <h3>
+                <span class="material-symbols-outlined">format_list_bulleted</span>
+                Rhyming Words:
+            </h3>
             <div id="result">
                 <div class="empty-state">
-                    <i class="fas fa-cloud"></i>
-                    <p>Enter a word to find rhyming words</p>
+                    <span class="material-symbols-outlined">cloud</span>
+                    <p>Enter a word to find rhymes</p>
                 </div>
             </div>
         </div>
+        
+        <div class="footer">
+            <p>Poetry Assistant App &copy; 2023</p>
+        </div>
     </div>
+
+    <script src="PoetryAssistant.js"></script>
     
-    <div class="footer">
-        <p>Poetry Assistant App &copy; 2023 | Created with ❤️ for wordsmiths and poets</p>
-        <p>Inspired by the beauty of language and creative expression</p>
-    </div>
-
     <script>
-        // Mock data for demonstration
-        const mockRhymes = {
-            "love": ["dove", "above", "glove", "shove", "of", "prove", "move", "improve"],
-            "dream": ["seem", "theme", "cream", "beam", "stream", "extreme", "esteem", "scheme"],
-            "sky": ["high", "fly", "bye", "cry", "dry", "shy", "apply", "deny"],
-            "light": ["night", "bright", "sight", "right", "fight", "kite", "invite", "excite"],
-            "heart": ["start", "apart", "art", "cart", "smart", "chart", "depart", "impart"]
-        };
-
+        // This script would be in PoetryAssistant.js - keeping it here just for demonstration
+        // In reality, the actual implementation would be in the external file
         function fetchAndFindRhymingWords() {
             const input = document.getElementById('userInput').value.trim().toLowerCase();
             const resultDiv = document.getElementById('result');
@@ -325,12 +301,21 @@
             if (!input) {
                 resultDiv.innerHTML = `
                     <div class="empty-state">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <p>Please enter a word to find rhymes</p>
+                        <span class="material-symbols-outlined">error</span>
+                        <p>Please enter a word</p>
                     </div>
                 `;
                 return;
             }
+            
+            // Mock rhyming words data for demonstration
+            const mockRhymes = {
+                "love": ["dove", "above", "glove", "shove", "of", "prove"],
+                "dream": ["seem", "theme", "cream", "beam", "stream", "extreme"],
+                "sky": ["high", "fly", "bye", "cry", "dry", "shy"],
+                "light": ["night", "bright", "sight", "right", "fight", "kite"],
+                "heart": ["start", "apart", "art", "cart", "smart", "chart"]
+            };
             
             // Simulate API call delay
             setTimeout(() => {
@@ -344,7 +329,7 @@
                 } else {
                     resultDiv.innerHTML = `
                         <div class="empty-state">
-                            <i class="fas fa-search"></i>
+                            <span class="material-symbols-outlined">search_off</span>
                             <p>No rhymes found for "${input}"</p>
                             <p>Try words like "love", "dream", or "sky"</p>
                         </div>
